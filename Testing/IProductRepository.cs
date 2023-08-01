@@ -12,5 +12,6 @@ namespace Testing
         public IEnumerable<Product> GetAllProducts();
         //object GetProduct(int id);
         public Product GetProductById(int id);
+        public void UpdateProduct(Product product);
     }
 }

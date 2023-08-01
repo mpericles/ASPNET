@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Testing.Models;
 
 namespace Testing.Controllers
 {
@@ -29,6 +29,23 @@ namespace Testing.Controllers
             var product = repo.GetProductById(id);
             //var product = repo.GetProduct(id);
             return View(product);
+        }
+
+        public IActionResult UpdateProduct(int id)
+        {
+            Product prod = repo.GetProductById(id);
+            if (prod == null)
+            {
+                return View("ProductNotFound");
+            }
+            return View(prod);
+        }
+
+        public IActionResult UpdateProductToDatabase(Product product)
+        {
+            repo.UpdateProduct(product);
+
+            return RedirectToAction("ViewProduct", new { id = product.ProductID });
         }
     }
 }
